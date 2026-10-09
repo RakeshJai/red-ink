@@ -1,0 +1,159 @@
+body {
+  font-family: Georgia, serif;
+  background-color: #f5f0e1;
+  color: #1c1917;
+  margin: 0;
+  padding: 16px;
+  width: 320px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  text-align: center;
+  border-top: 3px double #1c1917;
+  border-bottom: 3px double #1c1917;
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.header .subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin: 2px 0 0 0;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #44403c;
+}
+
+.form-group input {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  padding: 6px;
+  border: 1px solid #78716c;
+  background-color: #fafaf9;
+  color: #1c1917;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1c1917;
+  background-color: #fff;
+}
+
+.key-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-note {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #57534e;
+  margin: 0;
+}
+
+.save-keys-btn {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px;
+  color: #1c1917;
+  background-color: #e7e0cf;
+  border: 1px solid #78716c;
+  cursor: pointer;
+}
+
+.save-keys-btn:hover {
+  background-color: #dcd5c0;
+}
+
+.keys-status {
+  min-height: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: #2d6a4f;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #d6d3d1;
+  margin: 8px 0;
+}
+
+.toggle-btn {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px;
+  color: #fff;
+  background-color: #1c1917;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #44403c;
+}
+
+.toggle-btn.active {
+  background-color: #c1121f;
+}
+
+.toggle-btn.active:hover {
+  background-color: #7f0d14;
+}
+
+.status {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.status.idle {
+  color: #78716c;
+}
+
+.status.active {
+  color: #2d6a4f;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}

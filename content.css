@@ -1,0 +1,235 @@
+/* RedInk Content Styles (Milestone 4 Implementation)
+   insulated inside Shadow DOM. Adheres to ponytail minimal styling rules. */
+
+:host {
+  all: initial; /* Reset all inherited page styles */
+}
+
+/* Base Wrapper for layout isolation */
+.redink-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 2147483647; /* Ensure it stays on top of all host page elements */
+  font-family: 'Georgia', 'Times New Roman', serif;
+  box-sizing: border-box;
+}
+
+/* 1. Folded Corner Page Toggle Button */
+.redink-folded-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  /* Top-right fold gradient */
+  background: linear-gradient(225deg, transparent 50%, #dcd5c0 50%, #f5f0e1 60%, #e8e2cf 100%);
+  border: none;
+  cursor: pointer;
+  z-index: 2147483647;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.redink-folded-corner:hover {
+  transform: scale(1.05);
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Transpose the fold to the top-left of the sidebar when expanded */
+.redink-wrapper.expanded .redink-folded-corner {
+  right: 400px;
+  /* Top-left fold gradient */
+  background: linear-gradient(135deg, transparent 50%, #dcd5c0 50%, #f5f0e1 60%, #e8e2cf 100%);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* 2. Main Sidebar Structure */
+.redink-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  /* radial gradient mimics aging paper from light center to darker edges */
+  background: radial-gradient(circle, #fcfaf2 0%, #f5f0e1 70%, #ebdcb9 100%);
+  border-left: 5px double #1a1a1a;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 2147483646;
+}
+
+/* Slide sidebar offscreen when collapsed */
+.redink-wrapper.collapsed .redink-sidebar {
+  transform: translateX(400px);
+  pointer-events: none; /* Do not capture events while hidden */
+}
+
+.redink-wrapper.expanded .redink-sidebar {
+  transform: translateX(0);
+}
+
+/* 3. Masthead Header */
+.redink-masthead {
+  border-top: 4px double #1a1a1a;
+  border-bottom: 4px double #1a1a1a;
+  padding: 15px 10px;
+  margin: 30px 20px 10px 20px;
+  text-align: center;
+  user-select: none;
+}
+
+.redink-masthead h1 {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 28px;
+  letter-spacing: 4px;
+  margin: 0;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.redink-subtitle {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  color: #444;
+}
+
+/* 4. Claims Feed Container */
+.redink-claims-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Vintage styled scrollbar */
+.redink-claims-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.redink-claims-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.redink-claims-list::-webkit-scrollbar-thumb {
+  background: #d3cbb5;
+  border-radius: 3px;
+}
+
+.redink-claims-list::-webkit-scrollbar-thumb:hover {
+  background: #b5a98f;
+}
+
+/* 5. Claim Cards */
+.redink-card {
+  position: relative;
+  background: #fbf9f3;
+  border: 1px solid #d3cbb5;
+  border-bottom: 3px double #d3cbb5;
+  padding: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.redink-claim {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.3;
+  margin: 0 0 5px 0;
+  color: #1a1a1a;
+  padding-right: 90px; /* Leave margin for the rotated stamp overlay */
+}
+
+.redink-byline {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.redink-explanation {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #2b2b2b;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Native drop-cap styling using the first-letter pseudo-element */
+.redink-explanation::first-letter {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2.8em;
+  font-weight: bold;
+  float: left;
+  line-height: 0.8;
+  margin-top: 4px;
+  margin-right: 6px;
+  color: #1a1a1a;
+}
+
+/* 6. Rubber Stamp Overlay Styles */
+.redink-stamp {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 3px solid;
+  padding: 4px 10px;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+  opacity: 0.85;
+  background-color: rgba(251, 249, 243, 0.9);
+  border-radius: 4px;
+  pointer-events: none; /* Prevent blocking card hover/select */
+  user-select: none;
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+/* Color Coding for Verdicts */
+.redink-stamp.false {
+  color: #c1121f;
+  border-color: #c1121f;
+}
+
+.redink-stamp.confirmed {
+  color: #2d6a4f;
+  border-color: #2d6a4f;
+}
+
+.redink-stamp.mostly-true {
+  color: #606c38;
+  border-color: #606c38;
+}
+
+.redink-stamp.misleading {
+  color: #bc6c25;
+  border-color: #bc6c25;
+}
+
+.redink-stamp.unverified {
+  color: #6c757d;
+  border-color: #6c757d;
+}

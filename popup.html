@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>RedInk Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>THE RED INK</h1>
+      <p class="subtitle">Settings & Control</p>
+    </div>
+    
+    <hr class="divider">
+
+    <section class="key-settings" aria-label="API key settings">
+      <p class="settings-note">Use your own provider keys. They are saved in this browser's extension storage.</p>
+      <div class="form-group">
+        <label for="deepgram-key">Deepgram API key</label>
+        <input id="deepgram-key" type="password" autocomplete="off" placeholder="Enter your key">
+      </div>
+      <div class="form-group">
+        <label for="featherless-key">Featherless API key</label>
+        <input id="featherless-key" type="password" autocomplete="off" placeholder="Enter your key">
+      </div>
+      <div class="form-group">
+        <label for="model-name">Model</label>
+        <input id="model-name" type="text" value="Qwen/Qwen2.5-3B-Instruct">
+      </div>
+      <button id="save-keys-btn" class="save-keys-btn" type="button">Save API keys</button>
+      <div id="keys-status" class="keys-status" role="status"></div>
+    </section>
+
+    <hr class="divider">
+
+    <button id="toggle-btn" class="toggle-btn">Start Session</button>
+    <div id="status" class="status idle">Status: Idle</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
